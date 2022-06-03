@@ -18,6 +18,9 @@ class StrEnum(str, Enum):
                 return member
         raise ValueError(f"'{value}' is not a valid {cls.__name__}")
 
+    def __str__(self):
+        return self.value
+
 
 @dataclass
 class VehicleDataBase:

@@ -232,6 +232,7 @@ def test_strenum():
 
     assert TestEnum("hello") == TestEnum.HELLO
     assert TestEnum("HELLO") == TestEnum.HELLO
+    assert str(TestEnum.HELLO) == "HELLO"
 
     with pytest.raises(ValueError):
         TestEnum("WORLD")
