@@ -10,7 +10,7 @@ import httpx
 
 from bimmer_connected.api.authentication import MyBMWAuthentication
 from bimmer_connected.api.regions import get_app_version, get_server_url
-from bimmer_connected.api.utils import get_correlation_id, log_to_to_file
+from bimmer_connected.api.utils import get_correlation_id, log_to_file
 from bimmer_connected.const import HTTPX_TIMEOUT, USER_AGENT, X_USER_AGENT, CarBrands
 from bimmer_connected.models import GPSPosition
 
@@ -50,7 +50,7 @@ class MyBMWClient(httpx.AsyncClient):
             brand = [x for x in [b.value for b in CarBrands] if x in response.request.headers.get("x-user-agent", "")]
             base_file_name = "_".join([response.url.path.split("/")[-1]] + brand)
             base_file_name = re.sub(r"\d", "0", base_file_name)
-            log_to_to_file(content, config.log_response_path, base_file_name)  # type: ignore[arg-type]
+            log_to_file(content, config.log_response_path, base_file_name)  # type: ignore[arg-type]
 
         if config.log_response_path:
             kwargs["event_hooks"]["response"].append(log_response)

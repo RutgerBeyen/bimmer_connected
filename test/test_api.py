@@ -4,7 +4,7 @@ import json
 import pytest
 
 from bimmer_connected.api.regions import get_region_from_name, valid_regions
-from bimmer_connected.api.utils import anonymize_data, log_to_to_file
+from bimmer_connected.api.utils import anonymize_data, log_to_file
 
 
 def test_valid_regions():
@@ -48,5 +48,5 @@ def test_anonymize_data():
 
 def test_log_to_file_without_file_name(tmp_path):
     """Test not logging to file if no file name is given."""
-    assert log_to_to_file(content=[], logfile_path=tmp_path, logfile_name=None) is None
+    assert log_to_file(content=[], logfile_path=tmp_path, logfile_name=None) is None
     assert len(list(tmp_path.iterdir())) == 0
