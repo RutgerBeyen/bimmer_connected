@@ -7,6 +7,7 @@ import logging
 import time
 import traceback
 from enum import Enum
+from traceback import TracebackException
 from typing import TYPE_CHECKING, Dict, Optional
 
 if TYPE_CHECKING:
@@ -59,13 +60,17 @@ class MyBMWJSONEncoder(json.JSONEncoder):
     """JSON Encoder that handles data classes, properties and additional data types."""
 
     def default(self, o):
-        if isinstance(o, (datetime.datetime, datetime.date, datetime.time)):
-            return o.isoformat()
-        if not isinstance(o, Enum) and hasattr(o, "__dict__") and isinstance(o.__dict__, Dict):
-            retval: Dict = o.__dict__
-            retval.update({p: getattr(o, p) for p in get_class_property_names(o) if p not in JSON_DEPRECATED_KEYS})
-            return {k: v for k, v in retval.items() if k not in JSON_IGNORED_KEYS}
-        return str(o)
+        try:
+            if isinstance(o, (datetime.datetime, datetime.date, datetime.time)):
+                return o.isoformat()
+            if not isinstance(o, Enum) and hasattr(o, "__dict__") and isinstance(o.__dict__, Dict):
+                retval: Dict = o.__dict__
+                retval.update({p: getattr(o, p) for p in get_class_property_names(o) if p not in JSON_DEPRECATED_KEYS})
+                return {k: v for k, v in retval.items() if k not in JSON_IGNORED_KEYS}
+            return str(o)
+        except Exception as ex:  # pylint: disable=broad-except
+            first_tb = TracebackException.from_exception(ex).stack[-1]
+            return f"{type(ex).__name__}: {ex} in '{first_tb.filename}', line {first_tb.lineno} ({first_tb.line})"
 
 
 def deprecated(replacement: Optional[str] = None) -> "Callable[[Callable[_P, _R]], Callable[_P, _R | None]]":

@@ -1,6 +1,7 @@
 """Tests for utils."""
 import datetime
 import json
+import re
 import sys
 
 try:
@@ -99,3 +100,19 @@ def test_json_encoder():
         '{"datetime": "2022-06-02T22:19:34.123456", "date": "2022-06-02", "value": [17, "mi"],'
         ' "list": [{"value_int": 1, "value_str": "string"}, "America/Los_Angeles"]}'
     ) == encoded
+
+
+@pytest.mark.asyncio
+async def test_json_encoder_traceback():
+    """Test the traceback fallback of the JSON encoder."""
+    vehicle = (await get_mocked_account()).get_vehicle(VIN_G23)
+    vehicle.data["attributes"].pop("brand")
+    vehicle.update_state(vehicle.data, {})
+
+    dump = json.dumps(vehicle, cls=MyBMWJSONEncoder)
+
+    assert re.search(
+        r"KeyError: 'brand' in '.*bimmer_connected\/vehicle\/vehicle\.py', line \d* "
+        r"\(return CarBrands\(self\.data\[ATTR_ATTRIBUTES\]\[\\\"brand\\\"]\)\)",
+        dump,
+    )
