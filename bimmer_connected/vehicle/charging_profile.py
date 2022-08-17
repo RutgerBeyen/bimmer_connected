@@ -44,13 +44,17 @@ class ChargingWindow:
         self._window_dict = window_dict
 
     @property
-    def start_time(self) -> datetime.time:
+    def start_time(self) -> Optional[datetime.time]:
         """Start of the charging window."""
+        if "start" not in self._window_dict:
+            return None
         return datetime.time(int(self._window_dict["start"]["hour"]), int(self._window_dict["start"]["minute"]))
 
     @property
-    def end_time(self) -> datetime.time:
+    def end_time(self) -> Optional[datetime.time]:
         """End of the charging window."""
+        if "end" not in self._window_dict:
+            return None
         return datetime.time(int(self._window_dict["end"]["hour"]), int(self._window_dict["end"]["minute"]))
 
 
