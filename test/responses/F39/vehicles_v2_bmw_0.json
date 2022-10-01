@@ -1,0 +1,48 @@
+[
+    {
+      "appVehicleType": "CONNECTED",
+      "attributes": {
+        "bodyType": "F39",
+        "brand": "BMW",
+        "color": 4281545523,
+        "countryOfOrigin": "BE",
+        "driveTrain": "PLUGIN_HYBRID",
+        "driverGuideInfo": {
+          "androidAppScheme": "com.bmwgroup.driversguide.row",
+          "androidStoreUrl": "https://play.google.com/store/apps/details?id=com.bmwgroup.driversguide.row",
+          "iosAppScheme": "bmwdriversguide:///open",
+          "iosStoreUrl": "https://apps.apple.com/de/app/id714042749?mt=8"
+        },
+        "headUnitRaw": "ENAVEVO",
+        "headUnitType": "ENTRY_EVO",
+        "hmiVersion": "ID5",
+        "lastFetched": "2022-09-21T10:28:26.495Z",
+        "model": "X2 xDrive25e",
+        "softwareVersionCurrent": {
+          "iStep": 574,
+          "puStep": {
+            "month": 3,
+            "year": 21
+          },
+          "seriesCluster": "F056"
+        },
+        "softwareVersionExFactory": {
+          "iStep": 574,
+          "puStep": {
+            "month": 3,
+            "year": 21
+          },
+          "seriesCluster": "F056"
+        },
+        "telematicsUnit": "ATM1",
+        "year": 2021
+      },
+      "mappingInfo": {
+        "isAssociated": false,
+        "isLmmEnabled": false,
+        "isPrimaryUser": true,
+        "mappingStatus": "CONFIRMED"
+      },
+      "vin": "WBA00000000000F39"
+    }
+  ]

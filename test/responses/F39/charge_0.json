@@ -1,0 +1,82 @@
+{
+  "chargeAndClimateSettings": {
+    "chargeAndClimateTimer": {
+      "chargingMode": "Charge immediately",
+      "chargingModeSemantics": "Charge immediately",
+      "departureTimer": [
+        "Off"
+      ],
+      "departureTimerSemantics": "Off",
+      "preconditionForDeparture": "Off",
+      "showDepartureTimers": false
+    },
+    "chargingFlap": {
+      "permanentlyUnlockLabel": "Off"
+    },
+    "chargingSettings": {
+      "acCurrentLimitLabel": "0A",
+      "acCurrentLimitLabelSemantics": "0 amperes",
+      "chargingTargetLabel": "100%",
+      "unlockCableAutomaticallyLabel": "Off"
+    }
+  },
+  "chargeAndClimateTimerDetail": {
+    "chargingMode": {
+      "chargingPreference": "NO_PRESELECTION",
+      "endTimeSlot": "0001-01-01T00:00:00",
+      "startTimeSlot": "0001-01-01T00:00:00",
+      "type": "CHARGING_IMMEDIATELY"
+    },
+    "departureTimer": {
+      "type": "TWO_DEPARTURE_TIMER",
+      "weeklyTimers": [
+        {
+          "daysOfTheWeek": [],
+          "id": 1,
+          "time": "0001-01-01T00:00:00",
+          "timerAction": "DEACTIVATE"
+        },
+        {
+          "daysOfTheWeek": [],
+          "id": 2,
+          "time": "0001-01-01T00:00:00",
+          "timerAction": "DEACTIVATE"
+        }
+      ]
+    },
+    "isPreconditionForDepartureActive": false
+  },
+  "chargingFlapDetail": {
+    "isPermanentlyUnlock": false
+  },
+  "chargingSettingsDetail": {
+    "acLimit": {
+      "current": {
+        "unit": "A",
+        "value": 0
+      },
+      "isUnlimited": false,
+      "max": 32,
+      "min": 0,
+      "values": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        20,
+        32
+      ]
+    },
+    "chargingTarget": 100,
+    "isUnlockCableActive": false,
+    "minChargingTargetToWarning": 0
+  },
+  "servicePack": "ATM"
+}
