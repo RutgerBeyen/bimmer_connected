@@ -4,6 +4,7 @@ import asyncio
 import datetime
 import json
 import logging
+from multiprocessing.sharedctypes import Value
 from typing import TYPE_CHECKING, Dict, Union
 
 from bimmer_connected.api.client import MyBMWClient
@@ -11,10 +12,12 @@ from bimmer_connected.const import (
     REMOTE_SERVICE_POSITION_URL,
     REMOTE_SERVICE_STATUS_URL,
     REMOTE_SERVICE_URL,
+    VEHICLE_CHARGING_PROFILE_URL,
     VEHICLE_POI_URL,
 )
 from bimmer_connected.models import PointOfInterest, StrEnum
 from bimmer_connected.utils import MyBMWJSONEncoder
+from bimmer_connected.vehicle.charging_profile import ChargingPreferences
 
 if TYPE_CHECKING:
     from bimmer_connected.vehicle import MyBMWVehicle
@@ -140,18 +143,68 @@ class RemoteServices:
         await self._trigger_state_update()
         return result
 
-    async def trigger_remote_service(self, service_id: Services, params: Dict = None) -> RemoteServiceStatus:
+    async def trigger_charging_mode_change(self, charging_preference: ChargingPreferences) -> RemoteServiceStatus:
+        """Update the vehicle charging mode.
+
+        A state update is triggered after this, as the charging state of the vehicle changes.
+        """
+        # TODO: Check if vehicle supports this at all
+        if not self._vehicle.is_charging_plan_supported:
+            raise ValueError("Vehicle does not support changing charging mode!")
+
+        if charging_preference == ChargingPreferences.UNKNOWN:
+            raise ValueError(f"Cannot set charging preference to {charging_preference}")
+
+        if charging_preference == ChargingPreferences.CHARGING_WINDOW:
+            charging_type = "TIME_SLOT"
+        else:
+            charging_type = "CHARGING_IMMEDIATELY"
+
+        # Get existing charging profile
+        async with MyBMWClient(self._account.config, brand=self._vehicle.brand) as client:
+            current_charging_mode = await client.get(
+                VEHICLE_CHARGING_PROFILE_URL.format(self._vehicle.vin),
+                params={"fields": "charging-profile", "has_charging_settings_capabilities": True},
+                headers={
+                    "bmw-current-date": datetime.datetime.utcnow().isoformat(),
+                },
+            )
+            payload = {
+                "servicePack": current_charging_mode.json()["servicePack"],
+                **current_charging_mode.json()["chargeAndClimateTimerDetail"],
+            }
+
+            payload["chargingMode"]["chargingPreference"] = charging_preference.value
+            payload["chargingMode"]["chargingPreference"] = charging_type
+
+            _LOGGER.debug("Triggering charge mode change to %s", charging_preference.value)
+            event_id = (
+                await client.post(
+                    VEHICLE_CHARGING_PROFILE_URL.format(self._vehicle.vin),
+                    json=payload,
+                )
+                .json()
+                .get("eventId")
+            )
+
+        status = await self._block_until_done(event_id)
+        await self._trigger_state_update()
+        return status
+
+    async def trigger_remote_service(
+        self, service_id: Services, params: Dict = None, json_payload: Dict = None
+    ) -> RemoteServiceStatus:
         """Trigger a generic remote service and wait for the result."""
-        event_id = await self._start_remote_service(service_id, params)
+        event_id = await self._start_remote_service(service_id, params, json_payload)
         status = await self._block_until_done(event_id)
         return status
 
-    async def _start_remote_service(self, service_id: Services, params: Dict = None) -> str:
+    async def _start_remote_service(self, service_id: Services, params: Dict = None, json_payload: Dict = None) -> str:
         """Start a generic remote service."""
 
         url = REMOTE_SERVICE_URL.format(vin=self._vehicle.vin, service_type=service_id.value)
         async with MyBMWClient(self._account.config, brand=self._vehicle.brand) as client:
-            response = await client.post(url, params=params)
+            response = await client.post(url, params=params, json=json_payload)
         return response.json().get("eventId")
 
     async def _block_until_done(self, event_id: str) -> RemoteServiceStatus:

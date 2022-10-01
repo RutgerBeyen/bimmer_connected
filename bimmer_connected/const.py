@@ -72,12 +72,7 @@ REMOTE_SERVICE_POSITION_URL = REMOTE_SERVICE_BASE_URL + "/eventPosition?eventId=
 VEHICLE_IMAGE_URL = "/eadrax-ics/v3/presentation/vehicles/{vin}/images?carView={view}"
 VEHICLE_POI_URL = "/eadrax-dcs/v1/send-to-car/send-to-car"
 
-VEHICLE_CHARGING_STATISTICS_URL = "/eadrax-chs/v1/charging-statistics"
-VEHICLE_CHARGING_SESSIONS_URL = "/eadrax-chs/v1/charging-sessions"
-
-SERVICE_CHARGING_STATISTICS_URL = "CHARGING_STATISTICS"
-SERVICE_CHARGING_SESSIONS_URL = "CHARGING_SESSIONS"
-SERVICE_CHARGING_PROFILE = "CHARGING_PROFILE"
+VEHICLE_CHARGING_PROFILE_URL = "/eadrax-crccs/v1/vehicles/{vin}/charging-profile"
 
 
 ATTR_STATE = "state"
