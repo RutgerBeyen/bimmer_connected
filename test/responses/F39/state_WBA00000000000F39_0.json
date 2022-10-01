@@ -1,197 +1,197 @@
 {
-  "capabilities": {
-    "a4aType": "BLUETOOTH",
-    "climateFunction": "AIR_CONDITIONING",
-    "climateNow": true,
-    "horn": true,
-    "isBmwChargingSupported": true,
-    "isCarSharingSupported": false,
-    "isChargeNowForBusinessSupported": false,
-    "isChargingHistorySupported": true,
-    "isChargingHospitalityEnabled": false,
-    "isChargingLoudnessEnabled": false,
-    "isChargingPlanSupported": true,
-    "isChargingPowerLimitEnabled": false,
-    "isChargingSettingsEnabled": false,
-    "isChargingTargetSocEnabled": false,
-    "isClimateTimerWeeklyActive": false,
-    "isCustomerEsimSupported": false,
-    "isDCSContractManagementSupported": true,
-    "isDataPrivacyEnabled": false,
-    "isEasyChargeEnabled": false,
-    "isEvGoChargingSupported": false,
-    "isMiniChargingSupported": false,
-    "isNonLscFeatureEnabled": false,
-    "isRemoteEngineStartSupported": false,
-    "isRemoteHistoryDeletionSupported": false,
-    "isRemoteHistorySupported": true,
-    "isRemoteParkingSupported": false,
-    "isRemoteServicesActivationRequired": false,
-    "isRemoteServicesBookingRequired": false,
-    "isScanAndChargeSupported": true,
-    "isSustainabilityAccumulatedViewEnabled": false,
-    "isSustainabilitySupported": false,
-    "isWifiHotspotServiceSupported": false,
-    "lastStateCallState": "ACTIVATED",
-    "lights": true,
-    "lock": true,
-    "remoteChargingCommands": {},
-    "sendPoi": true,
-    "specialThemeSupport": [],
-    "unlock": true,
-    "vehicleFinder": true,
-    "vehicleStateSource": "LAST_STATE_CALL"
-  },
-  "state": {
-    "chargingProfile": {
-      "chargingControlType": "TWO_TIMES_TIMER",
-      "chargingMode": "IMMEDIATE_CHARGING",
-      "chargingPreference": "CHARGING_WINDOW",
-      "chargingSettings": {
-        "hospitality": "NO_ACTION",
-        "idcc": "NO_ACTION",
-        "targetSoc": 100
-      },
-      "climatisationOn": false,
-      "departureTimes": [
-        {
-          "action": "DEACTIVATE",
-          "id": 1,
-          "timeStamp": {
-            "hour": 0,
-            "minute": 0
-          },
-          "timerWeekDays": []
+    "capabilities": {
+        "a4aType": "BLUETOOTH",
+        "climateFunction": "AIR_CONDITIONING",
+        "climateNow": true,
+        "horn": true,
+        "isBmwChargingSupported": true,
+        "isCarSharingSupported": false,
+        "isChargeNowForBusinessSupported": false,
+        "isChargingHistorySupported": true,
+        "isChargingHospitalityEnabled": false,
+        "isChargingLoudnessEnabled": false,
+        "isChargingPlanSupported": true,
+        "isChargingPowerLimitEnabled": false,
+        "isChargingSettingsEnabled": false,
+        "isChargingTargetSocEnabled": false,
+        "isClimateTimerWeeklyActive": false,
+        "isCustomerEsimSupported": false,
+        "isDCSContractManagementSupported": true,
+        "isDataPrivacyEnabled": false,
+        "isEasyChargeEnabled": false,
+        "isEvGoChargingSupported": false,
+        "isMiniChargingSupported": false,
+        "isNonLscFeatureEnabled": false,
+        "isRemoteEngineStartSupported": false,
+        "isRemoteHistoryDeletionSupported": false,
+        "isRemoteHistorySupported": true,
+        "isRemoteParkingSupported": false,
+        "isRemoteServicesActivationRequired": false,
+        "isRemoteServicesBookingRequired": false,
+        "isScanAndChargeSupported": true,
+        "isSustainabilityAccumulatedViewEnabled": false,
+        "isSustainabilitySupported": false,
+        "isWifiHotspotServiceSupported": false,
+        "lastStateCallState": "ACTIVATED",
+        "lights": true,
+        "lock": true,
+        "remoteChargingCommands": {},
+        "sendPoi": true,
+        "specialThemeSupport": [],
+        "unlock": true,
+        "vehicleFinder": true,
+        "vehicleStateSource": "LAST_STATE_CALL"
+    },
+    "state": {
+        "chargingProfile": {
+            "chargingControlType": "TWO_TIMES_TIMER",
+            "chargingMode": "IMMEDIATE_CHARGING",
+            "chargingPreference": "CHARGING_WINDOW",
+            "chargingSettings": {
+                "hospitality": "NO_ACTION",
+                "idcc": "NO_ACTION",
+                "targetSoc": 100
+            },
+            "climatisationOn": false,
+            "departureTimes": [
+                {
+                    "action": "DEACTIVATE",
+                    "id": 1,
+                    "timeStamp": {
+                        "hour": 0,
+                        "minute": 0
+                    },
+                    "timerWeekDays": []
+                },
+                {
+                    "action": "DEACTIVATE",
+                    "id": 2,
+                    "timeStamp": {
+                        "hour": 0,
+                        "minute": 0
+                    },
+                    "timerWeekDays": []
+                }
+            ],
+            "reductionOfChargeCurrent": {
+                "end": {
+                    "hour": 0,
+                    "minute": 0
+                },
+                "start": {
+                    "hour": 0,
+                    "minute": 0
+                }
+            }
         },
-        {
-          "action": "DEACTIVATE",
-          "id": 2,
-          "timeStamp": {
-            "hour": 0,
-            "minute": 0
-          },
-          "timerWeekDays": []
+        "checkControlMessages": [
+            {
+                "severity": "LOW",
+                "type": "ENGINE_OIL"
+            }
+        ],
+        "climateTimers": [
+            {
+                "departureTime": {
+                    "hour": 7,
+                    "minute": 0
+                },
+                "isWeeklyTimer": false,
+                "timerAction": "DEACTIVATE",
+                "timerWeekDays": []
+            },
+            {
+                "departureTime": {
+                    "hour": 7,
+                    "minute": 0
+                },
+                "isWeeklyTimer": true,
+                "timerAction": "DEACTIVATE",
+                "timerWeekDays": [
+                    "MONDAY"
+                ]
+            },
+            {
+                "departureTime": {
+                    "hour": 7,
+                    "minute": 0
+                },
+                "isWeeklyTimer": true,
+                "timerAction": "DEACTIVATE",
+                "timerWeekDays": [
+                    "MONDAY"
+                ]
+            }
+        ],
+        "combustionFuelLevel": {
+            "range": 513,
+            "remainingFuelLiters": 32
+        },
+        "currentMileage": 20287,
+        "doorsState": {
+            "combinedSecurityState": "SECURED",
+            "combinedState": "CLOSED",
+            "hood": "CLOSED",
+            "leftFront": "CLOSED",
+            "leftRear": "CLOSED",
+            "rightFront": "CLOSED",
+            "rightRear": "CLOSED",
+            "trunk": "CLOSED"
+        },
+        "driverPreferences": {
+            "lscPrivacyMode": "OFF"
+        },
+        "electricChargingState": {
+            "chargingConnectionType": "UNKNOWN",
+            "chargingLevelPercent": 78,
+            "chargingStatus": "INVALID",
+            "chargingTarget": 100,
+            "isChargerConnected": false,
+            "range": 33
+        },
+        "isLeftSteering": true,
+        "isLscSupported": true,
+        "lastFetched": "2022-09-21T10:28:27.709Z",
+        "lastUpdatedAt": "2022-09-21T10:01:40Z",
+        "location": {
+            "address": {
+                "formatted": "some_formatted_address"
+            },
+            "coordinates": {
+                "latitude": 12.3456,
+                "longitude": 34.5678
+            },
+            "heading": 123
+        },
+        "range": 513,
+        "requiredServices": [
+            {
+                "dateTime": "2023-10-01T00:00:00.000Z",
+                "description": "Next service due after the specified distance or date.",
+                "mileage": 15000,
+                "status": "OK",
+                "type": "OIL"
+            },
+            {
+                "dateTime": "2025-10-01T00:00:00.000Z",
+                "description": "Next vehicle check due after the specified distance or date.",
+                "mileage": 48000,
+                "status": "OK",
+                "type": "VEHICLE_CHECK"
+            },
+            {
+                "dateTime": "2024-10-01T00:00:00.000Z",
+                "description": "Next service due by the specified date.",
+                "status": "OK",
+                "type": "BRAKE_FLUID"
+            }
+        ],
+        "windowsState": {
+            "combinedState": "CLOSED",
+            "leftFront": "CLOSED",
+            "leftRear": "CLOSED",
+            "rightFront": "CLOSED",
+            "rightRear": "CLOSED"
         }
-      ],
-      "reductionOfChargeCurrent": {
-        "end": {
-          "hour": 0,
-          "minute": 0
-        },
-        "start": {
-          "hour": 0,
-          "minute": 0
-        }
-      }
-    },
-    "checkControlMessages": [
-      {
-        "severity": "LOW",
-        "type": "ENGINE_OIL"
-      }
-    ],
-    "climateTimers": [
-      {
-        "departureTime": {
-          "hour": 7,
-          "minute": 0
-        },
-        "isWeeklyTimer": false,
-        "timerAction": "DEACTIVATE",
-        "timerWeekDays": []
-      },
-      {
-        "departureTime": {
-          "hour": 7,
-          "minute": 0
-        },
-        "isWeeklyTimer": true,
-        "timerAction": "DEACTIVATE",
-        "timerWeekDays": [
-          "MONDAY"
-        ]
-      },
-      {
-        "departureTime": {
-          "hour": 7,
-          "minute": 0
-        },
-        "isWeeklyTimer": true,
-        "timerAction": "DEACTIVATE",
-        "timerWeekDays": [
-          "MONDAY"
-        ]
-      }
-    ],
-    "combustionFuelLevel": {
-      "range": 513,
-      "remainingFuelLiters": 32
-    },
-    "currentMileage": 20287,
-    "doorsState": {
-      "combinedSecurityState": "SECURED",
-      "combinedState": "CLOSED",
-      "hood": "CLOSED",
-      "leftFront": "CLOSED",
-      "leftRear": "CLOSED",
-      "rightFront": "CLOSED",
-      "rightRear": "CLOSED",
-      "trunk": "CLOSED"
-    },
-    "driverPreferences": {
-      "lscPrivacyMode": "OFF"
-    },
-    "electricChargingState": {
-      "chargingConnectionType": "UNKNOWN",
-      "chargingLevelPercent": 78,
-      "chargingStatus": "INVALID",
-      "chargingTarget": 100,
-      "isChargerConnected": false,
-      "range": 33
-    },
-    "isLeftSteering": true,
-    "isLscSupported": true,
-    "lastFetched": "2022-09-21T10:28:27.709Z",
-    "lastUpdatedAt": "2022-09-21T10:01:40Z",
-    "location": {
-      "address": {
-        "formatted": "some_formatted_address"
-      },
-      "coordinates": {
-        "latitude": 12.3456,
-        "longitude": 34.5678
-      },
-      "heading": 123
-    },
-    "range": 513,
-    "requiredServices": [
-      {
-        "dateTime": "2023-10-01T00:00:00.000Z",
-        "description": "Next service due after the specified distance or date.",
-        "mileage": 15000,
-        "status": "OK",
-        "type": "OIL"
-      },
-      {
-        "dateTime": "2025-10-01T00:00:00.000Z",
-        "description": "Next vehicle check due after the specified distance or date.",
-        "mileage": 48000,
-        "status": "OK",
-        "type": "VEHICLE_CHECK"
-      },
-      {
-        "dateTime": "2024-10-01T00:00:00.000Z",
-        "description": "Next service due by the specified date.",
-        "status": "OK",
-        "type": "BRAKE_FLUID"
-      }
-    ],
-    "windowsState": {
-      "combinedState": "CLOSED",
-      "leftFront": "CLOSED",
-      "leftRear": "CLOSED",
-      "rightFront": "CLOSED",
-      "rightRear": "CLOSED"
     }
-  }
 }
