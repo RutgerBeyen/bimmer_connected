@@ -12,7 +12,8 @@ from bimmer_connected.const import (
     REMOTE_SERVICE_POSITION_URL,
     REMOTE_SERVICE_STATUS_URL,
     REMOTE_SERVICE_URL,
-    VEHICLE_CHARGING_PROFILE_URL,
+    VEHICLE_CHARGING_PROFILE_POST_URL,
+    VEHICLE_CHARGING_PROFILE_GET_URL,
     VEHICLE_POI_URL,
 )
 from bimmer_connected.models import PointOfInterest, StrEnum
@@ -163,7 +164,7 @@ class RemoteServices:
         # Get existing charging profile
         async with MyBMWClient(self._account.config, brand=self._vehicle.brand) as client:
             current_charging_mode = await client.get(
-                VEHICLE_CHARGING_PROFILE_URL.format(self._vehicle.vin),
+                VEHICLE_CHARGING_PROFILE_GET_URL.format(vin=self._vehicle.vin),
                 params={"fields": "charging-profile", "has_charging_settings_capabilities": True},
                 headers={
                     "bmw-current-date": datetime.datetime.utcnow().isoformat(),
@@ -175,17 +176,17 @@ class RemoteServices:
             }
 
             payload["chargingMode"]["chargingPreference"] = charging_preference.value
-            payload["chargingMode"]["chargingPreference"] = charging_type
+            payload["chargingMode"]["type"] = charging_type
+            """Have to add this, otherwise the existing timers are messed up"""
+            payload["chargingMode"]["timerChange"] = "NO_CHANGE"
 
             _LOGGER.debug("Triggering charge mode change to %s", charging_preference.value)
             event_id = (
                 await client.post(
-                    VEHICLE_CHARGING_PROFILE_URL.format(self._vehicle.vin),
+                    VEHICLE_CHARGING_PROFILE_POST_URL.format(vin=self._vehicle.vin),
                     json=payload,
                 )
-                .json()
-                .get("eventId")
-            )
+            ).json().get("eventId")
 
         status = await self._block_until_done(event_id)
         await self._trigger_state_update()
